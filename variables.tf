@@ -1,16 +1,47 @@
-variable "name" {
-  description = "Name to be used on all the resources as identifier."
-  type        = string
-  default     = "appmesh-ecs"
+variable "environment_name" {
+  description = "An environment name that will be prefixed to resource names"
+  type = string
+  default = "DEMO"
 }
 
-variable "region" {
-  description = "AWS region."
-  type        = string
-  default     = "us-east-1"
+variable "vpc_cidr" {
+  description = "Please enter the IP range (CIDR notation) for this VPC"
+  type = string
+  default = "10.0.0.0/16"
 }
 
-variable "lb_ingress_ip" {
-  description = "Your IP. This is used in the load balancer security groups to ensure only you can access the UI of example application."
-  type        = string
+variable "public_subnet1_cidr" {
+  description = "Please enter the IP range (CIDR notation) for the public subnet in the first Availability Zone"
+  type = string
+  default = "10.0.0.0/19"
+}
+
+variable "public_subnet2_cidr" {
+  description = "Please enter the IP range (CIDR notation) for the public subnet in the second Availability Zone"
+  type = string
+  default = "10.0.32.0/19"
+}
+
+variable "private_subnet1_cidr" {
+  description = "Please enter the IP range (CIDR notation) for the private subnet in the first Availability Zone"
+  type = string
+  default = "10.0.64.0/19"
+}
+
+variable "private_subnet2_cidr" {
+  description = "Please enter the IP range (CIDR notation) for the private subnet in the second Availability Zone"
+  type = string
+  default = "10.0.96.0/19"
+}
+
+variable "availability_zone_1" {
+  description = "Availability Zone 1"
+  type = string
+  default = "us-west-2a"
+}
+
+variable "availability_zone_2" {
+  description = "Availability Zone 2"
+  type = string
+  default = "us-west-2b"
 }
