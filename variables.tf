@@ -45,3 +45,15 @@ variable "availability_zone_2" {
   type = string
   default = "us-west-2b"
 }
+
+variable "mesh_name" {
+  description = "Name for the appmesh"
+  type = string
+  default = "appmesh-mesh"
+}
+
+variable "app_port" {
+  description = "App port"
+  type = number
+  default = 8080
+}
