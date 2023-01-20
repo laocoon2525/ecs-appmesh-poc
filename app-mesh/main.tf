@@ -9,3 +9,7 @@ terraform {
 provider "aws" {
   region = "us-west-2"
 }
+
+resource "aws_appmesh_mesh" "appmesh_mesh" {
+  name = var.mesh_name
+}
