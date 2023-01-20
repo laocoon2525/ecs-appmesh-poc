@@ -1,19 +1,8 @@
-output "vpc" {
-  value = aws_vpc.vpc
+output "vpc_id" {
+  value = aws_vpc.vpc.id
 }
 
-output "public_subnet1" {
-  value = aws_subnet.public_subnet_1
+output "front_endpoint" {
+  value = "http://${aws_lb.public_load_balancer.dns_name}"
 }
 
-output "public_subnet2" {
-  value = aws_subnet.public_subnet_2
-}
-
-output "private_subnet1" {
-  value = aws_subnet.private_subnet_1
-}
-
-output "private_subnet2" {
-  value = aws_subnet.private_subnet_2
-}
