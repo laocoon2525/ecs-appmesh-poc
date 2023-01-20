@@ -6,7 +6,7 @@ resource "aws_security_group" "public_load_balancer_security_group" {
     protocol  = "tcp"
     to_port   = 80
     cidr_blocks = ["0.0.0.0/0"]
-    security_groups = [aws_security_group.app_security_group.name]
+    security_groups = [aws_security_group.app_security_group.id]
   }
 }
 
@@ -19,10 +19,10 @@ resource "aws_lb" "public_load_balancer" {
 }
 
 resource "aws_lb_listener" "public_load_balancer_listener" {
-  load_balancer_arn = aws_lb.public_load_balancer.id
+  load_balancer_arn = aws_lb.public_load_balancer.arn
   default_action {
     type = "forward"
-    target_group_arn = aws_lb.public_load_balancer.arn
+    target_group_arn = aws_lb_target_group.front_target_group.arn
   }
   depends_on = [aws_lb.public_load_balancer]
   port = 80

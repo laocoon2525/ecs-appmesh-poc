@@ -85,7 +85,7 @@ resource "aws_nat_gateway" "nat_gateway_2" {
 }
 
 ### Public routes
-resource "aws_route_table" "route_table" { #PublicRouteTable
+resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.vpc.id
   tags = {
     Name = "${var.environment_name} Public Routes"
@@ -93,19 +93,19 @@ resource "aws_route_table" "route_table" { #PublicRouteTable
 }
 
 resource "aws_route" "default_public_route" {
-  route_table_id = aws_route_table.route_table.id
+  route_table_id = aws_route_table.public_route_table.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id = aws_internet_gateway.internet_gateway.id
   depends_on = [aws_internet_gateway_attachment.internet_gateway_attachment]
 }
 
 resource "aws_route_table_association" "public_subnet_1_route_table_association" {
-  route_table_id = aws_route_table.route_table.id
+  route_table_id = aws_route_table.public_route_table.id
   subnet_id = aws_subnet.public_subnet_1.id
 }
 
 resource "aws_route_table_association" "public_subnet_2_route_table_association" {
-  route_table_id = aws_route_table.route_table.id
+  route_table_id = aws_route_table.public_route_table.id
   subnet_id = aws_subnet.public_subnet_2.id
 }
 

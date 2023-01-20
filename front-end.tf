@@ -325,34 +325,8 @@ resource "aws_ecs_service" "front_ecs_service" {
 
   network_configuration {
     assign_public_ip = false
-    security_groups = [aws_security_group.app_security_group.id,]
+    security_groups = [aws_security_group.app_security_group.id]
     subnets = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
   }
 
 }
-
-#FrontECSService:
-#Type: AWS::ECS::Service
-#DependsOn:
-#- PublicLoadBalancerListener
-#- FrontListenerRule
-#Properties:
-#Cluster: !Ref ECSCluster
-#DeploymentConfiguration:
-#MaximumPercent: 200
-#MinimumHealthyPercent: 100
-#DesiredCount: 3
-#LaunchType: 'FARGATE'
-#TaskDefinition: !Ref FrontTaskDef
-#LoadBalancers:
-#- ContainerName: app
-#ContainerPort: !Ref ContainerPort
-#TargetGroupArn: !Ref FrontTargetGroup
-#NetworkConfiguration:
-#AwsvpcConfiguration:
-#AssignPublicIp: DISABLED
-#SecurityGroups:
-#- !Ref AppSecurityGroup
-#Subnets:
-#- !Ref PrivateSubnet1
-#- !Ref PrivateSubnet2
